@@ -1,0 +1,43 @@
+[
+  {
+    "TestName": "User can login successfully",
+    "username": "standard_user",
+    "password": "secret_sauce",
+    "shouldPass": true
+  },
+  {
+    "testName": "Invalid Username",
+    "username": "wrong_username",
+    "password": "secret_sauce",
+    "shouldPass": false,
+    "errorText": "Epic sadface: Username and password do not match any user in this service"
+  },
+  {
+    "testName": "Invalid Password",
+    "username": "standard_user",
+    "password": "wrong_pass",
+    "shouldPass": false,
+    "errorText": "Epic sadface: Username and password do not match any user in this service"
+  },
+  {
+    "testName": "Empty Fields",
+    "username": "",
+    "password": "",
+    "shouldPass": false,
+    "errorText": "Epic sadface: Username is required"
+  },
+  {
+    "testName": "Empty Username Field",
+    "username": "",
+    "password": "secret_sauce",
+    "shouldPass": false,
+    "errorText": "Epic sadface: Username is required"
+  },
+  {
+    "testName": "Empty Password Field",
+    "username": "standard_user",
+    "password": "",
+    "shouldPass": false,
+    "errorText": "Epic sadface: Password is required"
+  }
+]

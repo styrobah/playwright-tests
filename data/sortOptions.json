@@ -1,0 +1,10 @@
+[
+  {
+    "option": "lohi",
+    "description": "Price Low → High"
+  },
+  {
+    "option": "hilo",
+    "description": "Price High → Low"
+  }
+]
