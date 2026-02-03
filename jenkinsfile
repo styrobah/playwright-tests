@@ -1,0 +1,28 @@
+pipeline {
+  agent {
+    docker {
+      image 'mcr.microsoft.com/playwright:v1.49.1-jammy'
+    }
+  }
+
+  stages {
+    stage('Install dependencies') {
+      steps {
+        sh 'npm ci'
+        sh 'npx playwright install --with-deps'
+      }
+    }
+
+    stage('Run tests') {
+      steps {
+        sh 'npx playwright test --workers=1'
+      }
+    }
+
+    stage('Archive report') {
+      steps {
+        archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
+      }
+    }
+  }
+}
