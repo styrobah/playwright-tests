@@ -1,29 +1,34 @@
 pipeline {
-  agent {
-    dockerContainer { 
-        image 'mcr.microsoft.com/playwright:v1.49.1-jammy' 
-        args '-u root' 
-    }
-  }
-
-  stages {
-    stage('Install dependencies') {
-      steps {
-        sh 'npm ci'
-        sh 'npx playwright install --with-deps'
-      }
+    agent {
+        docker {
+            image 'mcr.microsoft.com/playwright:v1.58.0-noble'
+            args '-u root'
+        }
     }
 
-    stage('Run tests') {
-      steps {
-        sh 'npx playwright test --workers=1'
-      }
+    stages {
+        stage('Install dependencies') {
+            steps {
+                sh 'npm ci'
+            }
+        }
+
+        stage('Install Playwright Browsers') {
+            steps {
+                sh 'npx playwright install --with-deps'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'npx playwright test'
+            }
+        }
     }
 
-    stage('Archive report') {
-      steps {
-        archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
-      }
+    post {
+        always {
+            archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+        }
     }
-  }
 }
