@@ -3,6 +3,11 @@ import { LoginPage } from "../pages/LoginPage";
 
 export const test = base.extend({
   authenticatedPage: async ({ page }, use) => {
+
+    if (!process.env.USERNAME || !process.env.PASSWORD) {
+      throw new Error("Missing USERNAME or PASSWORD environment variables");
+    }
+    
     const loginPage = new LoginPage(page);
     await loginPage.open();
     await loginPage.waitForPageToLoad();
