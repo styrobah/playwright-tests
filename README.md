@@ -10,9 +10,6 @@ This test suite automates user workflows for the Sauce Demo e-commerce platform,
 
 - **Playwright** (v1.57.0) - Cross-browser automation framework
 - **Node.js** - JavaScript runtime
-- **Express** (v5.2.1) - Web framework (for server-side utilities)
-- **dotenv** (v17.2.3) - Environment variable management
-- **prom-client** (v15.1.3) - Prometheus metrics client
 
 ## Project Structure
 
